@@ -52,3 +52,19 @@ Une fois fait, utiliser la commande ```php bin/console doctrine:database:create`
 > Créer le serveur Symfony
 
 ```symfony server:start```
+
+
+
+**Etape 7**
+> Créer un controller par défaut 
+
+```php bin/console make:controller````
+
+Un nouveau fichier va se créer : *src/Controller/DefaultController.php*
+
+
+
+**Etape 8**
+> Dans ce nouveau fichier, on peut changer les informations dans le @Route en commentaire.
+
+Pour que le Controller s'affiche sur la page d'accueil du serveur, il faut les informations suivantes : ```@Route("/", name="home")```
