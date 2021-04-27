@@ -81,4 +81,4 @@ Pour que le Controller s'affiche sur la page d'accueil du serveur, il faut les i
 
 > dans le fichier `DefaultController.php`, créer une fonction pour accéder à notre page (voir modèle de la page home)
 
-> Modifier la route (en suivant le modèle de la fonction de base) avec ces informations : ```@Route(/nomDuNouveauFichier, name="nomDuNouveauFichier")
+> Modifier la route (en suivant le modèle de la fonction de base) avec ces informations : ```@Route(/nomDuNouveauFichier, name="nomDuNouveauFichier")```
