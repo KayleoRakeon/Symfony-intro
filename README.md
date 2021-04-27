@@ -68,3 +68,17 @@ Un nouveau fichier va se créer : *src/Controller/DefaultController.php*
 > Dans ce nouveau fichier, on peut changer les informations dans le @Route en commentaire.
 
 Pour que le Controller s'affiche sur la page d'accueil du serveur, il faut les informations suivantes : ```@Route("/", name="home")```
+
+
+-------------------------
+
+**Modification d'une page**
+> Ajouter une nouvelle page dans *templates/default* portant le nom ```maPage.html.twig````
+
+> étendre le fichier `base.html.twig` --> ```{% extends 'base.html.twig' %}```
+
+> Créer un nouveau block body --> ```{% block body %}```& ```{% endblock %}```
+
+> dans le fichier `DefaultController.php`, créer une fonction pour accéder à notre page (voir modèle de la page home)
+
+> Modifier la route (en suivant le modèle de la fonction de base) avec ces informations : ```@Route(/nomDuNouveauFichier, name="nomDuNouveauFichier")
