@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategorieController!{% endblock %}
+
+{% block body %}
+    {# dump() = var_dump #}
+    {{ dump(categories) }}
+
+    {% if categories is empty %}
+        <p>Il n'y a aucune catégorie</p>
+    {% else %}
+        <h2>Catégories</h2>
+    {% endif %}
+
+    <h3>Ajouter une catégorie</h3>
+    {{ form(ajout) }}
+{% endblock %}

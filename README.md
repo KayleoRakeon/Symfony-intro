@@ -82,3 +82,59 @@ Pour que le Controller s'affiche sur la page d'accueil du serveur, il faut les i
 > dans le fichier `DefaultController.php`, créer une fonction pour accéder à notre page (voir modèle de la page home)
 
 > Modifier la route (en suivant le modèle de la fonction de base) avec ces informations : ```@Route(/nomDuNouveauFichier, name="nomDuNouveauFichier")```
+
+-------------------------
+
+**COURS DU 17/05 - CRÉATION DU CategorieController** 
+
+**Etape 1** 
+> Ajouter une *entité* (table) à la base de donnée --> ```php bin/console make:entity [nom]````
+
+> Répondre aux questions qui sont posées dans le terminal, qui concernent l'ajout de propriétés dans l'entité
+
+> Utiliser la commande fournie --> ```php bin/console make:migration```. Cela prépare la requeête pour mettre à jour la BDD
+
+> Exécuter la nouvelle commande fournée --> ```php bin/console doctrine:migrations:migrate```, et écrire "yes" lorsque le terminal demande une confirmation
+
+
+**Etape 2** 
+> On travaille dans le fichier du controller que l'on vient de créer (ici `CategorieController.php`)
+
+> Faire l'import --> ```use App\Entity\Categorie;```
+
+> Se connecter à la BDD --> ```$em = $this->getDoctrine()->getManager();```
+
+> Selectionner et récupérer une table --> ```$categories = $em->getRepository(Categorie::class)->findAll();```
+
+> On choisit les variables qu'on envoi à la vue --> ```'categories' => $categories,```
+
+
+**Etape 3** 
+> On travaille dans la vue, le fichier `index.html.twig` généré avec le controller
+
+> On enlève tous ce qui est dans le block `body`et on test avec la ligne suivante --> ```{{ dump(categories) }}```
+
+> OPTIONNEL 
+> Créer une condition en twig --> ```{% if %}``` ```{% else %}``` ```{% endif %}```
+
+
+**Etape 4**
+> Création d'un formulaire en Symfony --> ```php bin/console make:form````
+
+> Remplir ce qui est demandé dans le terminal : Nom du formulaire, table sur laquelle on se base pour créer les champs du formulaire
+
+> Dans le nouveau fichier qui s'est créé (`Form/NomDuFormulaire.php`), ajouter un bouton d'envoi après tous les champs suite au `$builder`--> ```->add('Envoyer', SubmitType::class)```
+
+
+**Etape 5**
+> Créer le formulaire dans le controller --> ```$form = $this->createForm(CategorieType::class, $categorie);```
+
+> Importer le formulaire au début du fichier --> ```use App\Entity\Categorie;``` et ```use Symfony\Component\Form\Extension\Core\Type\SubmitType;```
+
+> Créer un nouvel objet AVANT la création du formulaire --> ```$categorie = new Categorie();```
+
+
+**Etape 6**
+> Ajouter le formulaire à la vue dans le return --> ```'ajout' => $form->createView(),```
+
+> Ajouter le formulaire dans le fichier twig --> ```{{ form(ajout) }}```
