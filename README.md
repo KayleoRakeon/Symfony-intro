@@ -129,7 +129,9 @@ Pour que le Controller s'affiche sur la page d'accueil du serveur, il faut les i
 **Etape 5**
 > Créer le formulaire dans le controller --> ```$form = $this->createForm(CategorieType::class, $categorie);```
 
-> Importer le formulaire au début du fichier --> ```use App\Entity\Categorie;``` et ```use Symfony\Component\Form\Extension\Core\Type\SubmitType;```
+> Importer le formulaire au début du fichier `CategorieController` --> ```use App\Entity\Categorie;```
+
+>  Importer au début du fichier `CategorieType.php` --> ```use Symfony\Component\Form\Extension\Core\Type\SubmitType;```
 
 > Créer un nouvel objet AVANT la création du formulaire --> ```$categorie = new Categorie();```
 
@@ -138,3 +140,10 @@ Pour que le Controller s'affiche sur la page d'accueil du serveur, il faut les i
 > Ajouter le formulaire à la vue dans le return --> ```'ajout' => $form->createView(),```
 
 > Ajouter le formulaire dans le fichier twig --> ```{{ form(ajout) }}```
+
+
+**Etape 7**
+
+> Dans le fichier `CategorieController.php`--> ```$form->handleRequest($resquest);
+
+> Importer le Request dans le Controller --> ```use Symfony\Component\HttpFoundation\Request;```
