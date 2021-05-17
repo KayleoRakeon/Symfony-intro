@@ -129,7 +129,7 @@ Pour que le Controller s'affiche sur la page d'accueil du serveur, il faut les i
 **Etape 5**
 > Créer le formulaire dans le controller --> ```$form = $this->createForm(CategorieType::class, $categorie);```
 
-> Importer le formulaire au début du fichier `CategorieController` --> ```use App\Entity\Categorie;```
+> Importer le formulaire au début du fichier `CategorieController` --> ```use App\Form\CategorieType;```
 
 >  Importer au début du fichier `CategorieType.php` --> ```use Symfony\Component\Form\Extension\Core\Type\SubmitType;```
 
@@ -143,7 +143,22 @@ Pour que le Controller s'affiche sur la page d'accueil du serveur, il faut les i
 
 
 **Etape 7**
-
 > Dans le fichier `CategorieController.php`--> ```$form->handleRequest($resquest);
 
 > Importer le Request dans le Controller --> ```use Symfony\Component\HttpFoundation\Request;```
+
+> Importer le paramêtre $resquest au début --> ```public function index(**Request $request**): Response```
+
+
+**Etape 8**
+> Créer la sauvegarde en base 
+
+> Condition : Si le formulaire est soumis --> ``ìf($form->isSubmitted()){}````
+
+> Préparer la sauvegarde en base --> ```$em->persist($categorie);````
+
+> Execute la sauvegarde en base --> ```$em->flush();```
+
+
+**Etape 9** 
+> Déplacer la récupération de la table APRES l'envoi du formulaire

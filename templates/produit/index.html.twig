@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProduitController!{% endblock %}
+
+{% block body %}
+    {{ dump(produits) }}
+
+    {% if produits is empty %}
+        <p>Aucun produit</p>
+    {% else %}
+        <h2>Produits</h2>
+    {% endif %}
+
+    {{ form(ajout) }}
+{% endblock %}

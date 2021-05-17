@@ -10,6 +10,22 @@
         <p>Il n'y a aucune catégorie</p>
     {% else %}
         <h2>Catégories</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cat in categories %}
+                    <tr>
+                        <td>{{ cat.titre }}</td>
+                        <td>{{ cat.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% endif %}
 
     <h3>Ajouter une catégorie</h3>

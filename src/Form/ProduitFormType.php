@@ -2,19 +2,21 @@
 
 namespace App\Form;
 
-use App\Entity\Categorie;
+use App\Entity\Produit;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CategorieType extends AbstractType
+class ProduitFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre')
+            ->add('nom')
             ->add('description')
+            ->add('prix')
+            ->add('qte')
             ->add('Envoyer', SubmitType::class)
         ;
     }
@@ -22,7 +24,7 @@ class CategorieType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Categorie::class,
+            'data_class' => Produit::class,
         ]);
     }
 }
