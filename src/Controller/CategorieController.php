@@ -41,4 +41,19 @@ class CategorieController extends AbstractController
             'ajout' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/categorie/{id}", name="une_categorie")
+     */
+    public function categorie(Categorie $categorie = null){
+        if($categorie == null){
+            echo 'Catégorie introuvable';
+            die();
+        }
+
+        return $this->render('categorie/categorie.html.twig', [
+            'categorie' => $categorie
+        ]);
+    }
+
 }

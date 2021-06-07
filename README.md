@@ -171,3 +171,27 @@ Pour que le Controller s'affiche sur la page d'accueil du serveur, il faut les i
 
 **Etape 11** 
 > Faire vérifier à Symfony que le formulaire est bien valide. Pour ça, rentrer la commande ```&& $form->isValid()``` lorsqu'on vérifie si le formulaire est envoyé (*if($form->isSubmitted())*)
+
+
+-------------------------
+
+**COURS DU 07/06 - Affichage d'une seule catégorie / d'un seul produit** 
+
+
+**Etape 1**
+> Dans les fichiers *Controller*, ajouter une nouvelle route sur ce modèle : ```@Route("/categorie/{id}", name="une_categorie")```
+
+
+**Etape 2**
+> Créer une fonction sur ce modèle : 
+```public function categorie(Categorie $categorie = null){}````
+
+> Symfony va essayer de trouver une catégorie qui correspond à l'id reçue, et lui assigner la valeur *null* s'il ne trouve rien.
+
+
+**Etape 3**
+> Gestion de l'erreur (si rien n'est trouvé) 
+```if($categorie == null){
+    echo 'Catégorie introuvable';
+    die();
+}```

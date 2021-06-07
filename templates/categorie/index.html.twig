@@ -15,6 +15,7 @@
                 <tr>
                     <th>Titre</th>
                     <th>Description</th>
+                    <th>Détails</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +23,10 @@
                     <tr>
                         <td>{{ cat.titre }}</td>
                         <td>{{ cat.description }}</td>
+                        <td>
+                            <a href="{{ path('une_categorie', {'id':cat.id}) }}"
+                            title="Voir la catégorie">Voir</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

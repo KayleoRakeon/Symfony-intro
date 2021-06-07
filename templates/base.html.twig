@@ -13,6 +13,16 @@
         {% endblock %}
     </head>
     <body>
+
+        <nav>
+            <ul>
+                <li><a href="{{ path('categorie') }}" 
+                    title="Catégories">Catégories</a></li>
+                <li><a href="{{ path('produits') }}"
+                    title="Produits">Produits</a></li>
+            </ul>
+        </nav>
+
         <main class="container">
             {% block body %}{% endblock %}
         </main>
