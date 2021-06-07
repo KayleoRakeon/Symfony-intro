@@ -191,9 +191,7 @@ Pour que le Controller s'affiche sur la page d'accueil du serveur, il faut les i
 
 **Etape 3**
 > Gestion de l'erreur (si rien n'est trouvé) 
-{
-    if($categorie == null){
-        echo 'Catégorie introuvable';
-        die();
-    }
-}
+```if($categorie == null){
+    echo 'Catégorie introuvable';
+    die();
+}```
