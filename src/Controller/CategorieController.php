@@ -28,7 +28,7 @@ class CategorieController extends AbstractController
         // Capte l'envoi du formulaire
         $form->handleRequest($request);
 
-        if($form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
             $em->persist($categorie); // Comme ->prepare()
             $em->flush(); // Comme ->execute()
         }

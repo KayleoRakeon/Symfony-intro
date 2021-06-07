@@ -4,12 +4,35 @@
 
 {% block body %}
     {{ dump(produits) }}
-
-    {% if produits is empty %}
-        <p>Aucun produit</p>
-    {% else %}
         <h2>Produits</h2>
-    {% endif %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Qté</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prod in produits %}
+                    <tr>
+                        <td>{{ prod.nom }}</td>
+                        <td>{{ prod.description }}</td>
+                        <td>{{ prod.prix }}</td>
+                        <td>{{ prod.qte }}</td>
+                    </tr>
+                {% else %}
+
+                    <tr>
+                        <td colspan="4">Il n'y a aucun produit</td>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+
+    
 
     {{ form(ajout) }}
 {% endblock %}

@@ -162,3 +162,12 @@ Pour que le Controller s'affiche sur la page d'accueil du serveur, il faut les i
 
 **Etape 9** 
 > Déplacer la récupération de la table APRES l'envoi du formulaire
+
+
+**Etape 10** 
+> Utiliser les Assert pour le formulaire 
+> Doc : *https://symfony.com/doc/current/validation.html* (3e exemple)
+
+
+**Etape 11** 
+> Faire vérifier à Symfony que le formulaire est bien valide. Pour ça, rentrer la commande ```&& $form->isValid()``` lorsqu'on vérifie si le formulaire est envoyé (*if($form->isSubmitted())*)

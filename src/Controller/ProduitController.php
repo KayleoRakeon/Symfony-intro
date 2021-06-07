@@ -15,18 +15,25 @@ class ProduitController extends AbstractController
      */
     public function index(Request $request): Response
     {
+        // Récupération du gesitonnaire de BDD
         $em = $this->getDoctrine()->getManager();
 
+        // Création de l'objet vide pour le formulaire
         $produit = new Produit();
+        // Création du formulaire
         $form = $this->createForm(ProduitFormType::class, $produit);
 
+        // Détecte quand le formulaire est envoyé 
         $form->handleRequest($request);
-
-        if($form->isSubmitted()){
+        // Si le formulaire a été envoyé :
+        if($form->isSubmitted() && $form->isValid()){
+            // prépare la sauvegarde de l'objet
             $em->persist($produit);
+            // Execute la sauvegarde
             $em->flush();
         }
 
+        // Récupération de la table
         $produits = $em->getRepository(Produit::class)->findAll();
 
         return $this->render('produit/index.html.twig', [

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategorieRepository::class)
@@ -19,6 +20,7 @@ class Categorie
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull
      */
     private $titre;
 
