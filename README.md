@@ -197,3 +197,19 @@ if($categorie == null){
     die();
 }
 ```
+
+
+**Etape 4** 
+> Retourner la vue 
+```php
+return $this->render('categorie/categorie.html.twig', [
+    'categorie' => $categorie
+]);
+```
+
+
+**Etape 5**
+> Créer les boutons dans la vue avec un *href* sur ce modèle :
+```twig
+href="{{ path('une_categorie', {'id':cat.id})}}"
+```
