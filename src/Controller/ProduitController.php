@@ -79,16 +79,16 @@ class ProduitController extends AbstractController
             $this->addFlash('danger', 'Produit introuvable');
             return $this->redirectToRoute('produit');
         }
+
+        // Récupération de doctrine (connexion à la BDD)
+        $em = $this->getDoctrine()->getManager();
+        // Préparation de la suppression
+        $em->remove($produit);
+        // Execution de la suppression
+        $em->flush();
+
+        // Message flash
+        $this->addFlash('warning', 'Produit supprimé');
+        return $this->redirectToRoute('produits');
     }
-
-    // Récupération de doctrine (connexion à la BDD)
-    $em = $this->getDoctrine()->getManager();
-    // Préparation de la suppression
-    $em->remove($produit);
-    // Execution de la suppression
-    $em->flush();
-
-    // Message flash
-    $this->addFlash('warning', 'Produit supprimé');
-    return $this->redirectToRoute('produit');
 }

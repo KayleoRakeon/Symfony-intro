@@ -72,4 +72,20 @@ class CategorieController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/categorie/delete/{id}", name="deleteCategorie")
+     */
+
+     public function deleteCategorie(Categorie $categorie = null){
+         if($categorie == null){
+             $this->addFlash('danger', 'Categorie introuvable');
+             return $this->redirectToRoute('categorie');
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($categorie);
+        $em->flush();
+        $this->addFlash('warning', 'Catégorie supprimée');
+        return $this->redirectToRoute('categorie');
+    }
+
 }

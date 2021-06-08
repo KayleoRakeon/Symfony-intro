@@ -14,6 +14,7 @@
                     <th>Qté</th>
                     <th>Catégorie</th>
                     <th>Détails</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,10 @@
                         <td>
                             <a href="{{ path('un_produit', {'id':prod.id}) }}"
                                 title="Voir ce produit">Voir</a>
+                        </td>
+                        <td>
+                            <a href="{{path('deleteProduit', {'id':prod.id})}}"
+                            title="Supprimer le produit" class="btn btn-danger">Supprimer</a>
                         </td>
                     </tr>
                 {% else %}

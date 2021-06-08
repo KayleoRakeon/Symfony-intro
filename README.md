@@ -307,3 +307,13 @@ public function deleteProduit(Produit $produit = null){
 > Execution de la suppresion : ```$em->flush()````
 > Affichage du message flash
 > Redirection de la Route
+
+
+**Etape 6**
+> Rajouter un lien dans la vue (nouvelle colonne dans le tableau)
+```html
+<td>
+    <a href="{{path('deleteProduit', {'id':prod.id})}}"
+    title="Supprimer le produit" class="btn btn-danger">Supprimer</a>
+</td>
+```
