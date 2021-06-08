@@ -231,3 +231,25 @@ href="{{ path('une_categorie', {'id':cat.id})}}"
 > Créer le fichier *categorie.html.twig*
 > Afficher les information avec les commandes ```categorie.info```
 > Intégrer le formulaire d'édition 
+
+
+**Etape 9**
+> Ajout d'un message flash lors de l'ajout d'un élément
+> Après l'ajout, utiliser la commande ```$this->addFlash('type (variable de notre choix)', 'message')```
+
+
+**Etape 10**
+> Afficher le message flash 
+```php
+{% for type, messages in app.flashes %}
+    {% for un_message in messages %}
+        <p>{{type}} : {{un_message}}</p>
+    {% endfor %}
+{% endfor %}
+```
+> App est directement intégré dans Symfony. Grâce à la commande précédente, on a ajouté la section "flashes". Grâce à cette boucle, on récupère tous les messages flash stockés, en ressortant son type (la variable) et son message
+
+
+**Etape 11**
+> Faire une redirection pour les erreurs 
+> Dans la condition qui teste si un produit existe ou non, à la place du *echo* et du *die()*, on crée un message flash avec comme type `danger` et on ajoute la commande ```return $this->redirectToRoute('RouteDeRedirection');```

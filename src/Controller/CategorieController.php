@@ -31,6 +31,8 @@ class CategorieController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $em->persist($categorie); // Comme ->prepare()
             $em->flush(); // Comme ->execute()
+
+            $this->addFlash('success', 'Catégorie ajoutée');
         }
 
         // Récupéartion de la table Categorie :
@@ -47,8 +49,8 @@ class CategorieController extends AbstractController
      */
     public function categorie(Categorie $categorie = null, Request $request){
         if($categorie == null){
-            echo 'Catégorie introuvable';
-            die();
+            $this->addFlash('danger', 'Catégorie introuvable');
+            return $this->redirectToRoute('categorie');
         }
 
         // Création du formulaire CategorieType avec l'objet vide
@@ -60,6 +62,8 @@ class CategorieController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($categorie); // Comme ->prepare()
             $em->flush(); // Comme ->execute()
+
+            $this->addFlash('success', 'Catégorie modifiée');
         }
 
         return $this->render('categorie/categorie.html.twig', [

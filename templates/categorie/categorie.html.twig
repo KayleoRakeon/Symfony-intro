@@ -2,6 +2,14 @@
 
 {% block body %}
 
+    {% for type, messages in app.flashes %}
+        {% for un_message in messages %}
+            <p class="alert alert-{{type}}">
+                {{un_message}}
+            </p>
+        {% endfor %}
+    {% endfor %}
+
     <h1>{{categorie.titre}}</h1>
     <p>{{categorie.description}}</p>
 

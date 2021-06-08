@@ -31,6 +31,9 @@ class ProduitController extends AbstractController
             $em->persist($produit);
             // Execute la sauvegarde
             $em->flush();
+
+            // Ajout d'un message flash :
+            $this->addFlash('success', 'Produit ajouté');
         }
 
         // Récupération de la table
@@ -48,8 +51,8 @@ class ProduitController extends AbstractController
      */
     public function produit(Produit $produit = null, Request $request){
         if($produit == null){
-            echo "Aucun produit n'a été trouvé";
-            die();
+            $this->addFlash("danger", "produit introuvable");
+            return $this->redirectToRoute('produits');
         }
 
         $form = $this->createForm(ProduitFormType::class, $produit);
@@ -58,6 +61,8 @@ class ProduitController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit);
             $em->flush();
+
+            $this->addFlash('success', 'Produit modifié');
         }
 
         return $this->render('produit/produit.html.twig', [
