@@ -253,3 +253,28 @@ href="{{ path('une_categorie', {'id':cat.id})}}"
 **Etape 11**
 > Faire une redirection pour les erreurs 
 > Dans la condition qui teste si un produit existe ou non, à la place du *echo* et du *die()*, on crée un message flash avec comme type `danger` et on ajoute la commande ```return $this->redirectToRoute('RouteDeRedirection');```
+
+
+
+**COURS DU 08/06 : LES JOINTURES**
+
+**Etape 1** 
+> Tout d'abord, entrer cette commande dans la console : ```php bin/console m:e Categorie```
+> *m:e* est une abréviation de *make:entity*
+> Donner ensuite le nom de la jointure (ici : "produit") puis répondre aux question. Pour le type, utiliser "relation" pour avoir un guide
+> Terminer par les commandes suivantes : 
+> ```php bin/console make:migration````
+> ```php bin/console doctrine:migrations:migrate```
+> ATTENTION : Bien s'assurer de vider la table produit AVANT la migration
+
+
+**Etape 2** 
+> Modifier les formulaires car ils ne fonctionnent plus correctement maintenant
+> D'abord, ajouter un *->add()* comme suit : 
+```php
+->add('categorie', EntityType::class, [
+    'class' => Categorie::class,
+    'choice_label' => 'titre'
+])
+```
+> Ajouter ensuite les use : ```use App\Entity\Categorie;```et ```use Symfony\Bridge\Doctrine\Form\Type\EntityType;```
