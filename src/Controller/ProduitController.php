@@ -70,4 +70,25 @@ class ProduitController extends AbstractController
             'edit' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/produit/delete/{id}", name="deleteProduit")
+     */
+    public function deleteProduit(Produit $produit = null){
+        if($produit == null){
+            $this->addFlash('danger', 'Produit introuvable');
+            return $this->redirectToRoute('produit');
+        }
+    }
+
+    // Récupération de doctrine (connexion à la BDD)
+    $em = $this->getDoctrine()->getManager();
+    // Préparation de la suppression
+    $em->remove($produit);
+    // Execution de la suppression
+    $em->flush();
+
+    // Message flash
+    $this->addFlash('warning', 'Produit supprimé');
+    return $this->redirectToRoute('produit');
 }

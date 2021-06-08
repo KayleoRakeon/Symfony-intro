@@ -278,3 +278,32 @@ href="{{ path('une_categorie', {'id':cat.id})}}"
 ])
 ```
 > Ajouter ensuite les use : ```use App\Entity\Categorie;```et ```use Symfony\Bridge\Doctrine\Form\Type\EntityType;```
+
+**Etape 3** 
+> Afficher la catégorie de chaque produit. 
+> Symfony va récupérer toutes les informations d'une catégorie jointe à un produit. 
+> Pour l'afficher, il faut simplement créer une nouvelle colonne dans le tableau et indiquer ```prod.categorie.titre````
+
+
+**Etape 4** 
+> Suppression d'un élément. 
+> Créer une nouvelle *@Route* avec une nouvelle fonction : 
+```php
+/**
+ * @Route("/produit/delete/{id}", name="deleteProduit")
+ */
+public function deleteProduit(Produit $produit = null){
+    if($produit == null){
+        $this->addFlash('danger', 'Produit introuvable');
+        return $this->redirectToRoute('produit');
+    }
+}
+```
+
+
+**Etape 5**
+> Selection de la doctrine : ```$em = $this->getDoctrine()-getManager();````
+> Préparation de la suppresion : ```$em->remove($produit);````
+> Execution de la suppresion : ```$em->flush()````
+> Affichage du message flash
+> Redirection de la Route
