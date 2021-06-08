@@ -200,10 +200,11 @@ if($categorie == null){
 
 
 **Etape 4** 
-> Retourner la vue 
+> Retourner la vue avec un formulaire pour éditer la selection
 ```php
 return $this->render('categorie/categorie.html.twig', [
     'categorie' => $categorie
+    'edit' => $form->createView()
 ]);
 ```
 
@@ -213,3 +214,20 @@ return $this->render('categorie/categorie.html.twig', [
 ```twig
 href="{{ path('une_categorie', {'id':cat.id})}}"
 ```
+
+
+**Etape 6**
+> Remettre le formulaire dans le Controller, dans la partie de la nouvelle fonction pour selectionner un seul élément de la table. Ici, on n'enverra pas un objet vide mais un objet qui contient des données (celle de l'élément selectionné). 
+> Ne pas oublier le ```Request $request```dans la définition de la function 
+
+
+**Etape 7**
+> Avant l'utilisation de la variable *$em*, mettre cette ligne : 
+> ```$em = $this->getDoctrine()->getManager();````
+
+
+
+**Etape 8**
+> Créer le fichier *categorie.html.twig*
+> Afficher les information avec les commandes ```categorie.info```
+> Intégrer le formulaire d'édition 

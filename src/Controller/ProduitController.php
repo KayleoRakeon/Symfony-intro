@@ -41,4 +41,28 @@ class ProduitController extends AbstractController
             'ajout' => $form->createView(),
         ]);
     }
+
+
+    /**
+     * @Route("/produits/{id}", name="un_produit")
+     */
+    public function produit(Produit $produit = null, Request $request){
+        if($produit == null){
+            echo "Aucun produit n'a été trouvé";
+            die();
+        }
+
+        $form = $this->createForm(ProduitFormType::class, $produit);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($produit);
+            $em->flush();
+        }
+
+        return $this->render('produit/produit.html.twig', [
+            'produit' => $produit,
+            'edit' => $form->createView()
+        ]);
+    }
 }

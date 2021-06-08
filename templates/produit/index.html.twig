@@ -12,6 +12,7 @@
                     <th>Description</th>
                     <th>Prix</th>
                     <th>Qté</th>
+                    <th>Détails</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +22,10 @@
                         <td>{{ prod.description }}</td>
                         <td>{{ prod.prix }}</td>
                         <td>{{ prod.qte }}</td>
+                        <td>
+                            <a href="{{ path('un_produit', {'id':prod.id}) }}"
+                                title="Voir ce produit">Voir</a>
+                        </td>
                     </tr>
                 {% else %}
 

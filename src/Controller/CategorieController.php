@@ -45,14 +45,26 @@ class CategorieController extends AbstractController
     /**
      * @Route("/categorie/{id}", name="une_categorie")
      */
-    public function categorie(Categorie $categorie = null){
+    public function categorie(Categorie $categorie = null, Request $request){
         if($categorie == null){
             echo 'Catégorie introuvable';
             die();
         }
 
+        // Création du formulaire CategorieType avec l'objet vide
+        $form = $this->createForm(CategorieType::class, $categorie);
+        // Capte l'envoi du formulaire
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($categorie); // Comme ->prepare()
+            $em->flush(); // Comme ->execute()
+        }
+
         return $this->render('categorie/categorie.html.twig', [
-            'categorie' => $categorie
+            'categorie' => $categorie,
+            'edit' => $form->createView()
         ]);
     }
 
